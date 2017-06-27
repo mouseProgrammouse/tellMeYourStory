@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="" method="post" name="registration">
+    {{ form.hidden_tag() }}
+        <div>
+            <span>Please enter your data</span>
+        </div>
+        <div class="form registration-name">
+            <span>Name</span>
+            {{ form.name(size=80) }}
+        </div>
+        <div class="form registration-surname">
+            <span>Surname</span>
+            {{ form.surname(size=80) }}
+        </div>
+        <div class="form registration-name">
+            <span>Create login</span>
+            {{ form.login(size=80) }}
+        </div>
+
+        <div class="form registration-password">
+            <span>Password</span>
+            {{ form.password(size=80) }}
+        </div>
+        <div class="form registration-password-copy">
+            <span>Repeat password</span>
+            {{ form.confirm(size=80) }}
+        </div>
+        <input type="submit" value="Registration"/>
+    </form>
+{% endblock %}
