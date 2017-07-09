@@ -1,5 +1,6 @@
 from app import db
 
+
 class User(db.Model):
     """
     User's data
@@ -7,8 +8,8 @@ class User(db.Model):
     """
     __tablename__ = 'user'
 
-    id = db.Column(db.Integer, primary_key = True, unique = True)
-    login = db.Column(db.String(64), index = True, unique = True)
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    login = db.Column(db.String(64), index=True, unique=True)
     password = db.Column(db.String(120))
     name = db.Column(db.String(120))
     surname = db.Column(db.String(120))
@@ -42,8 +43,8 @@ class Posts(db.Model):
     """
     __tablename__ = 'posts'
 
-    id = db.Column(db.Integer, primary_key = True, unique = True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), index = True)
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), index=True)
     title = db.Column(db.String(255))
     text = db.Column(db.Text)
     pub_date = db.Column(db.DateTime)

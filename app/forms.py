@@ -1,15 +1,16 @@
 from flask.ext.wtf import Form
-from wtforms import TextField, BooleanField, PasswordField
-from wtforms.validators import Required, Length, EqualTo
+import wtforms
+
 
 class LoginForm(Form):
-    login = TextField('login', validators = [Required()])
-    password = PasswordField('password',validators = [Required()])
-    remember_me = BooleanField('remember_me', default = False)
+    login = wtforms.TextField('login', validators=[wtforms.validators.Required()])
+    password = wtforms.PasswordField('password', validators=[wtforms.validators.Required()])
+    remember_me = wtforms.BooleanField('remember_me', default=False)
+
 
 class RegistrationForm(Form):
-	name = TextField('name', validators = [Required()])
-	surname = TextField('surname', validators = [Required()])
-	login = TextField('login', validators = [Required(), Length(min=4, max=25)])
-	password = PasswordField('password',validators = [Required(), EqualTo('confirm', message='Passwords must match')])
-	confirm = PasswordField('repeat password',validators = [Required()])
+    name = wtforms.TextField('name', validators=[wtforms.validators.Required()])
+    surname =  wtforms.TextField('surname', validators=[wtforms.validators.Required()])
+    login =  wtforms.TextField('login', validators=[wtforms.validators.Required(), wtforms.validators.Length(min=4, max=25)])
+    password =  wtforms.PasswordField('password', validators=[wtforms.validators.Required(), wtforms.validators.EqualTo('confirm', message='Passwords must match')])
+    confirm =  wtforms.PasswordField('repeat password', validators=[wtforms.validators.Required()])
