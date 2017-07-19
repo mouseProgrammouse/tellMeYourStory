@@ -62,7 +62,7 @@ def logout():
 
 @app.route('/registration', methods=['GET', 'POST'])
 def registration():
-    if g.user is not None:
+    if g.user is not None and g.user.is_authenticated():
         flash('Please Log out before registration')
         return redirect(url_for('index'))
     form = RegistrationForm()
