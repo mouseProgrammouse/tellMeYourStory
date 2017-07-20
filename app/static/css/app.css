@@ -1,0 +1,78 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500);
+@import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
+
+h1, h2 {
+    color: #fff;
+    font-family: "Permanent Marker", "Arial", "sans-serif";
+    text-align: center;
+}
+
+h1 {
+    font-size: 6rem;
+}
+
+body {
+    background-color: #f3fafa;
+    color: #7a7f86;
+    font-family: "Roboto", "Arial", "sans-serif";
+    font-weight: 400;
+}
+
+.header {
+    background-image: url("/static/img/main_page.png");
+    margin-bottom: 15px;
+    max-width: 100%;
+    padding-bottom: 3%;
+    padding-top: 10%;
+}
+
+.login-form a {
+    float: right;
+}
+
+.login-form button,
+.registration-form button {
+    background-color: #ff621d;
+    color: #fff;
+}
+
+.login-form button:hover,
+.registration-form button:hover {
+    background-color: #ff8a57;
+}
+
+.registration-title {
+    background-color: #18bad7;
+    border-radius: 5px 5px 0 0;
+    color: #fff;
+    padding: 5% 5% 1% 5%;
+}
+
+.registration-form {
+    background-color: #fff;
+    border-radius: 0 0 5px 5px;
+    box-shadow: -2px 2px 20px 3px #e9e9e9;
+    margin-top: 5%;
+    padding: 0;
+}
+
+.registration-form form {
+    padding: 1% 5%;
+}
+
+.registration-form a {
+    float: right;
+}
+
+.error ul{
+    background-color: #fff;
+    border-radius: 3px;
+    left: 2%;
+    padding: 10px 30px;
+    position: absolute;
+    top: 2%;
+}
+
+.error li {
+    list-style-type: none;
+}

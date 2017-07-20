@@ -1,20 +1,27 @@
-<html>
-    <head>
-        <title> {{ title }}</title>
-    </head>
-    <body>
-	    <div class = "error">
-	    	{% with messages = get_flashed_messages() %}
-	    	{% if messages %}
-	    		<ul>
-	    			{% for message in messages %}
-	    				<li> {{ message }} </li>
-	    			{% endfor %}
-	    		</ul>
-	    	{% endif %}
-	    	{% endwith %}
-	    </div>
-        {% block content %}
-        {% endblock %}
-    </body>
-</html>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title> {{ title }}</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- style -->
+<link rel="stylesheet" href="/static/css/normalize.min.css">
+<link rel="stylesheet" href="/static/css/foundation.min.css">
+<link rel="stylesheet" href="/static/css/app.css">
+
+<script src="/static/js/vendor/jquery.js"></script>
+<script src="/static/js/vendor/what-input.js"></script>
+<script src="/static/js/vendor/foundation.min.js"></script>
+
+<div class = "error">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li> {{ message }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</div>
+{% block content %}
+{% endblock %}
