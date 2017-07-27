@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
 
 {% block content %}
 <div class="row align-center">
@@ -10,20 +11,20 @@
         <form action="" method="post" name="registration">
         {{ form.hidden_tag() }}
             <div class="form registration-name">
-                {{ form.name(size=80, placeholder="name") }}
+                {{ render_field(form.name) }}
             </div>
             <div class="form registration-surname">
-                {{ form.surname(size=80, placeholder="surname") }}
+                {{ render_field(form.surname) }}
             </div>
             <div class="form registration-name">
-                {{ form.login(size=80, placeholder="login") }}
+                {{ render_field(form.login) }}
             </div>
 
             <div class="form registration-password">
-                {{ form.password(size=80, placeholder="password") }}
+                {{ render_field(form.password) }}
             </div>
             <div class="form registration-password-copy">
-                {{ form.confirm(size=80, placeholder="repeat password") }}
+                {{ render_field(form.confirm) }}
             </div>
             <button type="submit" class="button" value="Registration">Registration</button>
             <a href="/login">return to start page</a>
