@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-        <h1>Hello, {{user.login}}!</h1>
+    <div class="nav-bar row align-center">
+        <div class="large-12 medium-12 small-12 column">
+            <span>{{user.name}} {{user.surname}}</span>
+            <a href="/logout" class="button">Log out</a>
+        </div>
+    </div>
 {% endblock %}

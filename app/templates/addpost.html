@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+<div class="row align-center">
+    <div class="create-post-form large-8 medium-8 small-12 column">
+        <div class="create-post-title">
+            <h2>Create your story</h2>
+            <p>Please complete all the required fields in the form below. Don't forget to attach your image.</p>
+        </div>
+        <form action="" method="post" name="addpost" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+                <div class="form post-title">
+                    {{ render_field(form.title) }}
+                </div>
+                <div class="form post-text">
+                    {{ render_field(form.text) }}
+                </div>
+                <div class="form post-date">
+                    {{ render_field(form.date) }}
+                </div>
+                <div class="form post-image">
+                    {{ render_field(form.image) }}
+                </div>
+                <button type="submit" class="button" value="Post">Post</button>
+                <a href="/index">return to main page</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
