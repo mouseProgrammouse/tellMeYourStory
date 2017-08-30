@@ -1,0 +1,18 @@
+{% extends "base.html"  %}
+
+{% block content %}
+<div class="row align-center">
+    <div class="share-post large-8 medium-8 small-12 column">
+        <div class="share-title">
+            <h2>Share your story</h2>
+        </div>
+        <div class="share-description">
+        <div class="share-main">
+        	<p> Just copy your link and share it with friends:</p><span>/story?id={{ id }}</span>
+        </div>
+        	<a href="story?id={{ id }}" target="_blank">preview</a>
+        	<a class="to-main" href="/index">return to main page</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

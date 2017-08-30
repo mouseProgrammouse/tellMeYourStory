@@ -18,6 +18,10 @@ body {
     font-weight: 400;
 }
 
+.clearfix {
+  overflow: auto;
+}
+
 .header {
     background-image: url("/static/img/main_page.png");
     margin-bottom: 15px;
@@ -30,29 +34,37 @@ body {
     float: right;
 }
 
+.edit-post-form button,
 .login-form button,
 .registration-form button,
-.create-post-form button {
+.create-post-form button,
+.top-bar .button {
     background-color: #ff621d;
     color: #fff;
 }
 
+.edit-post-form button:hover,
 .login-form button:hover,
 .registration-form button:hover,
-.create-post-form button:hover {
+.create-post-form button:hover,
+.top-bar .button:hover {
     background-color: #ff8a57;
 }
 
+.edit-post-title,
 .registration-title,
-.create-post-title {
+.create-post-title,
+.share-title {
     background-color: #18bad7;
     border-radius: 5px 5px 0 0;
     color: #fff;
     padding: 5% 5% 1% 5%;
 }
 
+.edit-post-form,
 .registration-form,
-.create-post-form {
+.create-post-form,
+.share-post {
     background-color: #fff;
     border-radius: 0 0 5px 5px;
     box-shadow: -2px 2px 20px 3px #e9e9e9;
@@ -60,11 +72,14 @@ body {
     padding: 0;
 }
 
+.edit-post-form form,
 .registration-form form,
-.create-post-form form {
+.create-post-form form,
+.share-description {
     padding: 1% 5%;
 }
 
+.edit-post-form a,
 .registration-form a,
 .create-post-form a {
     float: right;
@@ -93,4 +108,87 @@ body {
 .errors+input,
 .errors+textarea {
     border-color: red;
+}
+
+.post {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 0 0 5px 5px;
+    box-shadow: -2px 2px 20px 3px #e9e9e9;
+}
+
+.post h2 {
+    color: #7a7f86;
+    font-family: "Roboto", "Arial", "sans-serif";
+    font-weight: 400;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.edit.button {
+    float: right;
+}
+
+.description {
+    width: 100%;
+    float: right;
+    padding: 0px 15px 0px 15px;
+}
+
+.post .image {
+    float: left;
+}
+
+.top-bar,
+.top-bar ul,
+.top-bar a {
+    background-color: #2ba6cb;
+    color: #fff;
+    margin-bottom: 0;
+}
+
+.top-bar {
+    margin-bottom: 10px;
+}
+
+.top-bar li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 7px 20px;
+}
+
+.top-bar .right {
+    float: right;
+}
+
+.top-bar .left {
+    float: left;
+}
+
+nav {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.edit-post-form .button{
+    float: left;
+    margin: 0px 10px 15px 0px;
+}
+
+.share-description .to-main {
+    float: right;
+}
+
+.share-description p {
+    display: inline-block;
+}
+
+.share-description span {
+    background-color: #7a7f86;
+    color: #fff;
+    padding: 0 10px;
+    border-radius: 3px;
+    display: inline-block;
 }

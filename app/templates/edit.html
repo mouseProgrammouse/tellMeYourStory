@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+<div class="row align-center">
+    <div class="edit-post-form large-8 medium-8 small-12 column">
+        <div class="edit-post-title">
+            <h2>Update your story</h2>
+            <p>Please change the required fields in the form below and save.</p>
+        </div>
+        <form action="" method="post" name="edit" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+                <div class="form post-title">
+                    {{ render_field(form.title, value=post.title) }}
+                </div>
+                <div class="form post-text">
+                    {% set f = form.text.process_data(post.text) %}
+                    {{ render_field(form.text, rows=10) }}
+                </div>
+                <div class="form post-date">
+                    {{ render_field(form.date, value=post.pub_date) }}
+                </div>
+                <div class="form post-image">
+                    {{ render_field(form.image) }}
+                </div>
+                <div class="form post-status">
+                    {{ render_field(form.public, checked=post.public) }}
+                    <label for="public">Public</label>
+                </div>
+                <a  href="/delete?id={{ post.id }}" class="button" value="Delete">Delete</a>
+                <button type="submit" class="button" value="Save">Save</button>
+                <a href="/index">return to main page</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
