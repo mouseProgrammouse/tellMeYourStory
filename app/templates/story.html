@@ -4,16 +4,12 @@
 <nav class="top-bar">
     <ul class="title-area">
         <li class="username">
-          <span>{{user.name}} {{user.surname}}</span>
+          <span>Story of {{user.name}} {{user.surname}}</span>
         </li>
     </ul>
     <section class="top-bar-section">
-        <ul class="right">
-          <a href="/logout" class="button">Log out</a>
-        </ul>
         <ul class="left">
-          <li><a href="addpost">Add post</a></li>
-          <li><a href="share">Share</a></li>
+          <li><a href="registration">Join us</a></li>
         </ul>
     </section>
 </nav>
@@ -29,7 +25,6 @@
                     <h2 class="post-title"> {{ post.title }}</h2>
                     <p> {{ post.text }} </p>
                     <span> {{ post.pub_date }} </span>
-                    <a class="edit button" href="edit?id={{ post.id }}">Edit</a>
                 </div>
             </div>
             {% else %}
@@ -37,7 +32,6 @@
                     <h2 class="post-title"> {{ post.title }}</h2>
                     <p> {{ post.text }} </p>
                     <span> {{ post.pub_date }} </span>
-                    <a class="edit button" href="edit?id={{ post.id }}">Edit</a>
                 </div>
             {% endif %}
         </div>

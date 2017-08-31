@@ -25,9 +25,12 @@ def index():
     """ Start page """
     user = { 'name':g.user.name,
         'surname':g.user.surname}
+    posts = Posts.query.filter_by(user_id=g.user.get_id())
     return render_template('index.html',
         title='test',
-        user=user)
+        user=user,
+        folder=os.path.join('/static/uploads/', str(g.user.get_id())),
+        posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -96,22 +99,26 @@ def add_post():
     form = CreatePost()
     if request.method == 'POST' and form.validate_on_submit():
         """ Get image info """
-        image = form.image.data
-        """ Create new file name """
-        old_filename, extension = os.path.splitext(image.filename)
-        filename = str(int(calendar.timegm(time.gmtime()))) + extension
-        """ Check directory """
-        directory = os.path.join(app.config['UPLOAD_FOLDER'], str(g.user.get_id()))
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-        """ Save image """
-        image.save(os.path.join(directory, filename))
+        if (form.image.data):
+            image = form.image.data
+            """ Create new file name """
+            old_filename, extension = os.path.splitext(image.filename)
+            filename = str(int(calendar.timegm(time.gmtime()))) + extension
+            """ Check directory """
+            directory = os.path.join(app.config['UPLOAD_FOLDER'], str(g.user.get_id()))
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+            """ Save image """
+            image.save(os.path.join(directory, filename))
+        else:
+            filename = None
         """ Add post to DB """
         new_post = Posts(user_id=g.user.get_id(),
             title=form.title.data,
             text=form.text.data,
             pub_date=form.date.data,
-            img=filename)
+            img=filename,
+            public=form.public.data)
         db.session.add(new_post)
         db.session.commit()
         """ Success message """
@@ -120,3 +127,81 @@ def add_post():
     return render_template('addpost.html',
         title='Create new post',
         form=form)
+
+
+@app.route('/edit', methods=['GET', 'POST'])
+@login_required
+def edit_post():
+    form = CreatePost()
+    if request.method == 'POST':
+        post = Posts.query.filter_by(id=request.args['id']).first()
+        """ UPDATE DATA """
+        post.title = form.title.data
+        post.text = form.text.data
+        post.pub_date = form.date.data
+        """ Get image info """
+        if (form.image.data):
+            image = form.image.data
+            """ Create new file name """
+            old_filename, extension = os.path.splitext(image.filename)
+            filename = str(int(calendar.timegm(time.gmtime()))) + extension
+            """ Check directory """
+            directory = os.path.join(app.config['UPLOAD_FOLDER'], str(g.user.get_id()))
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+            """ Save image """
+            image.save(os.path.join(directory, filename))
+            """ add new imagename """
+            post.img = filename
+        post.public = form.public.data
+        """ UPDATE DATA IN DB """
+        db.session.commit()
+        """ Succes message """
+        flash('Done')
+        return (redirect(url_for("index")))
+    elif request.method == 'GET':
+        """ Get info for post """
+        post = Posts.query.filter_by(id=request.args['id']).first()
+        if post is not None and post.user_id == g.user.get_id():
+            return render_template('edit.html',
+                    post=post,
+                    title='Update post',
+                    form=form)
+    flash('Something is wrong')
+    return redirect(url_for("index"))
+
+
+@app.route('/delete', methods=['GET'])
+@login_required
+def delete_post():
+    if request.method == 'GET':
+        post = Posts.query.filter_by(id=request.args['id']).first()
+        if post is not None and post.user_id == g.user.get_id():
+            db.session.delete(post)
+            db.session.commit()
+            """ Success message """
+            flash("Post was deleted")
+            return (redirect(url_for("index")))
+    flash('Something is wrong')
+    return (redirect(url_for("index")))
+
+
+@app.route('/share')
+@login_required
+def share():
+    return render_template('share.html',
+        title='Share story',
+        id=g.user.get_id())
+
+
+@app.route('/story', methods=['GET'])
+def get_story():
+    user_info = User.query.filter_by(id=request.args['id']).first()
+    user = { 'name':user_info.name,
+        'surname':user_info.surname}
+    posts = Posts.query.filter((Posts.public).is_(1) & (Posts.user_id==request.args['id']))
+    return render_template('story.html',
+        title='',
+        user=user,
+        folder=os.path.join('/static/uploads/', str(request.args['id'])),
+        posts=posts)

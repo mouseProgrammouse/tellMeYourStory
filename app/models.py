@@ -49,6 +49,7 @@ class Posts(db.Model):
     text = db.Column(db.Text)
     pub_date = db.Column(db.DateTime)
     img = db.Column(db.String(140))
+    public = db.Column(db.Boolean, default=False, nullable=False)
 
     def __repr__(self):
         return '<Post title: %s ; Text: %s>' % (self.title, self.text)
